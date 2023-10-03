@@ -171,7 +171,7 @@ def train(env, agent, file_name, intrinsic_on, number_stack_frames, args):
                         actions,
                         next_states
                     ))
-            print(f'reward: {reward_extrinsic} total_reward:{total_reward}, Total step:{total_step_counter}')
+            #print(f'reward: {reward_extrinsic} total_reward:{total_reward}, Total step:{total_step_counter}')
 
         if done:
             episode_duration = time.time() - start_time
