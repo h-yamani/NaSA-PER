@@ -257,8 +257,8 @@ def define_parse_args():
     parser.add_argument('--intrinsic', type=bool, default=True)
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--latent_size', type=int, default=200)
-    parser.add_argument('--env',  type=str, default="ball_in_cup")
-    parser.add_argument('--task', type=str, default="catch")
+    parser.add_argument('--env',  type=str, default="cheetah") # ball_in_cup catch, cartpole swingup/balance, reacher easy, finger spin, walker walk and cheetah run
+    parser.add_argument('--task', type=str, default="run")
     args   = parser.parse_args()
     return args
 
