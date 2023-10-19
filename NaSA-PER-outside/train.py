@@ -108,7 +108,7 @@ def train(env, agent, file_name, intrinsic_on, number_stack_frames, args):
         novelty_surprise = reward_novelty + reward_surprise
 
         if intrinsic_on and total_step_counter > max_steps_exploration:
-            total_reward    = reward_extrinsic + reward_surprise + reward_novelty
+            total_reward    = reward_extrinsic # + reward_surprise + reward_novelty
 
         else:
             total_reward = reward_extrinsic
@@ -120,7 +120,7 @@ def train(env, agent, file_name, intrinsic_on, number_stack_frames, args):
             for _ in range(G):
                 experience = memory.sample(batch_size)
                 # Unpack the experience tuple
-                states, actions, rewards, next_states, dones, novelty_surprise, indices, weights = experience
+                states, actions, rewards, next_states, dones, novelty_surprises, indices, weights = experience
 
                 ''' # Initialize lists to collect surprise_rates and novelty_rates for each experience
                 surprise_rates_batch = []
@@ -145,7 +145,7 @@ def train(env, agent, file_name, intrinsic_on, number_stack_frames, args):
                 # Calculate priority and update buffer
                 # Combine surprise_rates_batch and novelty_rates_batch into a single NumPy array
                 #combined_array = np.maximum(surprise_rates_batch + novelty_rates_batch, min_priority)
-                combined_array = np.maximum(novelty_surprise, min_priority)
+                combined_array = np.maximum(novelty_surprises, min_priority)
 
                 # Create a PyTorch tensor from the combined NumPy array
                 priority = torch.FloatTensor(combined_array).pow(alpha).cpu().data.numpy().flatten()
@@ -257,7 +257,7 @@ def define_parse_args():
     parser.add_argument('--intrinsic', type=bool, default=True)
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--latent_size', type=int, default=200)
-    parser.add_argument('--env',  type=str, default="cheetah") # ball_in_cup catch, cartpole swingup/balance, reacher easy, finger spin, walker walk and cheetah run
+    parser.add_argument('--env',  type=str, default="cheetah") # ball_in_cup catch, cartpole swingup/balance, reacher easy/hard, finger spin, walker walk ,cheetah run/acrobot  swingup_sparse
     parser.add_argument('--task', type=str, default="run")
     args   = parser.parse_args()
     return args
