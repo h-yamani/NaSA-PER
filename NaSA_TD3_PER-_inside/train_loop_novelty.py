@@ -110,7 +110,7 @@ def train(env, agent, file_name, intrinsic_on, number_stack_frames, args):
         novelty_surprise = reward_novelty
 
         if intrinsic_on and total_step_counter > max_steps_exploration:
-            total_reward = reward_extrinsic + reward_surprise + reward_novelty
+            total_reward = reward_extrinsic + reward_novelty
 
         else:
             total_reward = reward_extrinsic
