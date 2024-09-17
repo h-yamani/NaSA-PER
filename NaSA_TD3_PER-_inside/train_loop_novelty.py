@@ -281,7 +281,7 @@ def main():
         logging.info(f"Working with Autoencoder-TD3")
 
     date_time_str = datetime.now().strftime("%m_%d_%H_%M")
-    file_name = domain_name + "_" + task_name + "_" + "NASA_PER_R" + "_" + "Intrinsic_" + str(intrinsic_on) + f"_seed={seed}_td_error"
+    file_name = domain_name + "_" + task_name + "_" + "NASA-PER" + "_" + "Intrinsic_" + str(intrinsic_on) + f"_seed={seed}_novelty"
     logging.info(f" File name for this training loop: {file_name}")
 
     logging.info("Initializing Training Loop....")
