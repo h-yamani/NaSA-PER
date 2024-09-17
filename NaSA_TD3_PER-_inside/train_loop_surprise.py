@@ -105,9 +105,9 @@ def train(env, agent, file_name, intrinsic_on, number_stack_frames, args):
         surprise_rate, novelty_rate = agent.get_intrinsic_values(state, action, next_state)
         reward_surprise = surprise_rate * a
         reward_novelty = novelty_rate * b
-        print(f"reward_surprise: {reward_surprise} , reward_novelty: {reward_novelty}")
-        input()
-        novelty_surprise = reward_novelty + reward_surprise
+        # print(f"reward_surprise: {reward_surprise} , reward_novelty: {reward_novelty}")
+        # input()
+        novelty_surprise =  reward_surprise
 
         if intrinsic_on and total_step_counter > max_steps_exploration:
             total_reward = reward_extrinsic + reward_surprise + reward_novelty
