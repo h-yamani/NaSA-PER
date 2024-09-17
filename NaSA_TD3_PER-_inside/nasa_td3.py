@@ -167,9 +167,9 @@ class AE_TD3:
         ############################
         # calculate priority
 
-       # priority = torch.max(novelty_surprises, novelty_surprises).clamp(min=self.min_priority).pow(self.alpha).cpu().data.numpy().flatten()
+        priority = torch.max(novelty_surprises, novelty_surprises).clamp(min=self.min_priority).pow(self.alpha).cpu().data.numpy().flatten()
+
         #priority = torch.max(td_loss1, td_loss2).clamp(min=self.min_priority).pow(self.alpha).cpu().data.numpy().flatten()
-        priority = torch.max(td_loss1, td_loss2).clamp(min=self.min_priority).pow(self.alpha).cpu().data.numpy().flatten()
 
         replay_buffer.update_priority(indices, priority)
 
